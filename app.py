@@ -7,6 +7,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from datetime import datetime, date
 import requests
+import os
 from flask_sqlalchemy import SQLAlchemy
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 from dotenv import load_dotenv
