@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EASE LETTER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9L161MGFB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R9L161MGFB');
+</script>
+</head>
+<body>
+    <header class="header">
+        <h1>Ease Letter</h1>
+    </header>
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        <p class="trade">© 2026 Ease Letter</p>
+    </footer>
+</body>
+</html>
