@@ -8,34 +8,33 @@ from reportlab.lib.pagesizes import A4
 from datetime import datetime, date
 import requests
 import os
-from flask_sqlalchemy import SQLAlchemy
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-from dotenv import load_dotenv
-DOTENV_PATH = os.path.join(BASE_DIR, ".env")
-try:
-    from dotenv import load_dotenv
-    load_dotenv(dotenv_path=DOTENV_PATH)
-except ImportError:
-    pass
+
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = os.environ.get(
     "FLASK_SECRET_KEY", "dev-only-insecure-key-change-me"
 )
-db_dir = os.path.join(BASE_DIR, 'instance')
+
+db_dir = os.path.join(BASE_DIR, "instance")
 os.makedirs(db_dir, exist_ok=True)
-default_db_path = os.path.join(db_dir, 'app.db')
+
+default_db_path = os.path.join(db_dir, "app.db")
 database_url = os.environ.get("DATABASE_URL")
+
 if database_url and database_url.startswith("sqlite:///") and not database_url.startswith("sqlite:////"):
     relative_path = database_url.replace("sqlite:///", "", 1)
     absolute_path = os.path.join(BASE_DIR, relative_path)
     os.makedirs(os.path.dirname(absolute_path), exist_ok=True)
     database_url = f"sqlite:///{absolute_path.replace(chr(92), '/')}"
-app.config['SQLALCHEMY_DATABASE_URI'] = database_url or f'sqlite:///{default_db_path}'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['OPENAI_API_KEY'] = os.environ.get("OPENAI_API_KEY", "")
-app.config['OPENAI_MODEL'] = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
-if app.config['OPENAI_API_KEY']:
-    pass
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url or f"sqlite:///{default_db_path}"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+app.config["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY", "")
+app.config["OPENAI_MODEL"] = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+
 db.init_app(app)
 engine = TemplateEngine()
 with app.app_context():
