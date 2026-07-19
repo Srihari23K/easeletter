@@ -480,6 +480,17 @@ tbody td a:focus-visible {
   box-shadow: var(--shadow-md);
 }
 
+.letter-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--navy-900);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: -0.5rem 0 1.5rem;
+  animation: fadeUp .5s var(--ease) both;
+}
+
 .letter-box {
   background: var(--paper);
   border-radius: var(--radius-lg);

@@ -2,6 +2,11 @@
 
 {% block content %}
 <h2>Generated Letter</h2>
+
+{% if template_title %}
+<p class="letter-title">{{ template_title }}</p>
+{% endif %}
+
 <div class="letter-box">
     <pre style="white-space: pre-wrap; font-family: inherit; font-size: 16px;">
 {{ letter }}
@@ -16,6 +21,7 @@
 
 <form action="{{ url_for('download_pdf') }}" method="POST" style="display: inline;">
     <textarea name="letter_text" style="display:none;">{{ letter }}</textarea>
+    <input type="hidden" name="template_title" value="{{ template_title }}">
     <button type="submit" class="btn btn-success" style="margin-top: 10px;">
         Download as PDF
     </button>
